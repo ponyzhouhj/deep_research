@@ -17,7 +17,7 @@ def _bootstrap() -> None:
 
 def main() -> None:
     _bootstrap()
-    from mult_agents.main import main as run_main
+    from app.mult_agents.main import main as run_main
 
     run_main()
 
