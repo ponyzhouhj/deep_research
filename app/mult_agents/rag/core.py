@@ -25,7 +25,7 @@ class RAGConfig:
     milvus_host: str = "127.0.0.1"
     milvus_port: int = 19530
     collection_name: str = "mult_agent_knowledge"
-    embedding_model: str = "text-embedding-v1"
+    embedding_model: str = "tongyi-embedding-vision-flash-2026-03-06"
     chunk_size: int = 500
     chunk_overlap: int = 50
 

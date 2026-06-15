@@ -2,29 +2,29 @@ import logging
 import os
 import sys
 from pathlib import Path
-from mult_agents.config import AppConfig
-from mult_agents.rag.core import RAGConfig, RAGSystem
+
 # 将项目根目录添加到 PYTHONPATH，解决模块导入问题
 project_root = Path(__file__).resolve().parents[3]
-if str(project_root) not in sys.path:
-    sys.path.insert(0, str(project_root))
+app_root = project_root / "app"
+if str(app_root) not in sys.path:
+    sys.path.insert(0, str(app_root))
+
+from dotenv import load_dotenv
+from mult_agents.config import AppConfig
+from mult_agents.rag.core import RAGConfig, RAGSystem
 
 # 先加载 .env，再导入其他模块（确保 Milvus 配置正确）
-from dotenv import load_dotenv
 env_path = project_root / ".env"
 if env_path.exists():
     load_dotenv(dotenv_path=env_path)
 
 
-
-
-
-
-INPUT_PATH = Path("/Users/pengshaoyong/Documents/AI_Project/mult_agent/mult_agents_memory/README.md")
+INPUT_PATH = Path("D:\\code\\low_altitude\\文档输出\\公路无人机巡检系统内容理解总结.md")
 COLLECTION_NAME = ""
 MILVUS_HOST = ""
 MILVUS_PORT = 0
 EMBEDDING_MODEL = "text-embedding-v1"
+#EMBEDDING_MODEL = "tongyi-embedding-vision-flash-2026-03-06"
 CHUNK_SIZE = 500
 CHUNK_OVERLAP = 50
 

@@ -42,7 +42,10 @@ from .tools import (
     simple_calculator,
 )
 from .rag.core import RAGConfig
+import dashscope
+from langchain.chat_models import init_chat_model
 
+dashscope.base_http_api_url="https://dashscope.aliyuncs.com/api/v1/services/aigc/multimodal-generation/generation"
 
 logger = logging.getLogger("mult_agents")
 
@@ -439,7 +442,8 @@ def build_agent(model: str, api_key: str, prompt_key: str, temperature: float, t
     """
     if api_key:
         os.environ["DASHSCOPE_API_KEY"] = api_key
-    llm = ChatTongyi(model=model, temperature=temperature)
+    # llm = ChatTongyi(model=model, temperature=temperature)
+    llm = init_chat_model(model=model,model_provider="fireworks",api_key=api_key)
     prompt = PROMPTS[prompt_key]
     return create_agent(model=llm, tools=tools, system_prompt=prompt)
 
